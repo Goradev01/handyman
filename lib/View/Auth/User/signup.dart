@@ -173,6 +173,7 @@ class _SignupScreenState extends State<SignupScreen> with Ui {
               onTap: () {
                 // pagecontrl.nextPage(
                 //     duration: const Duration(seconds: 1),
+
                 //     curve: Curves.bounceInOut);
               },
               child: button(commonText('Next', white), green)),
