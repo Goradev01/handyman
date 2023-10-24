@@ -6,11 +6,82 @@ class Ui {
   Color black30 = const Color(0xff303030);
   Color blackc1 = const Color(0xff1C1C1C);
   Color black1f = const Color(0xff1C1B1F);
+  Color black = const Color(0xff000000);
   Color white = const Color(0xffffffff);
   Color greyEF = const Color(0xffEFF5F3);
+  Color grey74 = const Color(0xff747979);
   Color grey66 = const Color(0xff666766);
   Color grey61 = const Color(0xff616161);
+  Color grey3c = const Color(0xff3C3C3C);
+  Color greyB5 = const Color(0xffB3B4B5);
   Color black47 = const Color(0xff434B47);
+  Color yellow00 = const Color(0xffFFCC00);
+  void closeKeyboard(context) {
+    return FocusScope.of(context).unfocus();
+  }
+
+  Widget smallText(String t) {
+    return input(const Color(0xff7a7878), 14, t, w400);
+  }
+
+  Future snackBar(text, context) async {
+    var snackBar = SnackBar(
+      backgroundColor: Colors.grey,
+      content: Builder(builder: (context) {
+        try {
+          return Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.white),
+          );
+        } catch (e) {
+          return const Text(
+            'Error in connection',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.white),
+          );
+        }
+      }),
+    );
+    return ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Widget header(String name, context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 1, child: Align(alignment: left, child: backNav(context))),
+        Expanded(
+            flex: 2,
+            child: Align(
+                alignment: center,
+                child: input(const Color(0xff3c3c3c), 16, name, w500))),
+        Expanded(
+            flex: 1,
+            child: Align(
+                alignment: center,
+                child: input(const Color(0xff3c3c3c), 16, '', w500)))
+      ],
+    );
+  }
+
+  Widget loadingProgress() {
+    return Center(
+        child: CircularProgressIndicator(
+      backgroundColor: Colors.white,
+      color: green,
+    ));
+  }
+
+  Widget buttonLoading() {
+    return SizedBox(width: 20, height: 20, child: loadingProgress());
+  }
 
   double width(context) {
     return MediaQuery.of(context).size.width;
@@ -18,6 +89,19 @@ class Ui {
 
   double height(context) {
     return MediaQuery.of(context).size.height - 65;
+  }
+
+  Widget viewAllRow(String text, String text2) {
+    return Padding(
+      padding: pSymmetric(12, 0),
+      child: Row(
+        children: [
+          input(black, 16, text, w700),
+          const Spacer(),
+          input(green, 12, 'see all', w700),
+        ],
+      ),
+    );
   }
 
   Widget backNav(context) {
@@ -49,6 +133,21 @@ class Ui {
       alignment: center,
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(24)),
+      child: text,
+    );
+  }
+
+  Widget buttonOutLine(
+    Widget text,
+  ) {
+    return Container(
+      height: 48,
+      padding: pSymmetric(10, 20),
+      alignment: center,
+      decoration: BoxDecoration(
+          color: white,
+          border: Border.all(width: 1, color: green),
+          borderRadius: BorderRadius.circular(24)),
       child: text,
     );
   }

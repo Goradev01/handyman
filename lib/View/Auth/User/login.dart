@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:handyman/Provider/authprovider.dart';
+import 'package:handyman/TabComponent/homepage.dart';
 import 'package:handyman/View/Auth/User/register.dart';
 import 'package:handyman/View/formwidget.dart';
 import 'package:handyman/View/style.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,14 +19,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> with Ui {
   FormWidget? email;
+  FormWidget? username;
   String password = '';
   bool showPassword = false;
+  bool load = false;
 
   @override
   void initState() {
     super.initState();
 
     email = FormWidget(inputText: '', text: 'Email Address', context: context);
+    username = FormWidget(inputText: '', text: 'Username', context: context);
   }
 
   @override
@@ -40,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> with Ui {
             'We’re glad you’re back. To use your account please login.', w400),
         hspacer(15),
         email!.textField(),
+        username!.textField(),
         Padding(
           padding: pSymmetric(10, 0),
           child: Column(
@@ -86,9 +96,9 @@ class _LoginScreenState extends State<LoginScreen> with Ui {
                               color: grey66,
                             ),
                             onPressed: () {
-                              setState(() => {
-                                    showPassword = !showPassword,
-                                  });
+                              setState(
+                                () => showPassword = !showPassword,
+                              );
                             })
                         : IconButton(
                             icon: Icon(
@@ -96,9 +106,9 @@ class _LoginScreenState extends State<LoginScreen> with Ui {
                               color: grey66,
                             ),
                             onPressed: () {
-                              setState(() => {
-                                    showPassword = !showPassword,
-                                  });
+                              setState(
+                                () => showPassword = !showPassword,
+                              );
                             })
                   ],
                 ),
@@ -119,7 +129,33 @@ class _LoginScreenState extends State<LoginScreen> with Ui {
           ),
         ),
         hspacer(20),
-        button(commonText('Log in', white), green),
+        Consumer(builder: (_, ref, __) {
+          return GestureDetector(
+              onTap: () async {
+                nav(context, const HomePage());
+                // setState(() {
+                //   load = true;
+                // });
+                // Map<String, String> body = {
+                //   'username': 'Adeyemi',
+                //   'email': 'goradeveloper@gmail.com',
+                //   "password1": password,
+                // };
+                // var repo = ref.watch(authRepo);
+                // var done = await repo.login(email!.inputText!, password,
+                //     username!.inputText!, context, ref);
+
+                // setState(() {
+                //   load = done['load'];
+
+                //   repo.authToken = done['accessToken'];
+                //   var user = Jwt.parseJwt(repo.authToken);
+                //   log(user.toString());
+                // });
+              },
+              child: button(
+                  load ? buttonLoading() : commonText('Log in', white), green));
+        }),
         GestureDetector(
           onTap: () {
             nav(context, const RegisterScreen());

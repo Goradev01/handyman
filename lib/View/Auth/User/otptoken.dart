@@ -26,9 +26,6 @@ class _OTPTokenState extends State<OTPToken> with Ui {
     TextEditingController(),
     TextEditingController(),
   ];
-  void closeKeyboard() {
-    FocusScope.of(context).unfocus();
-  }
 
   void openKeyboard(FocusNode node) {
     FocusScope.of(context).requestFocus(node);
@@ -88,9 +85,9 @@ class _OTPTokenState extends State<OTPToken> with Ui {
                                     optToken[index] = input;
                                   });
                                   if (input.isNotEmpty) {
-                                    closeKeyboard();
+                                    closeKeyboard(context);
                                     if (index < 3) {
-                                      closeKeyboard();
+                                      closeKeyboard(context);
                                       openKeyboard(focus[index + 1]);
                                     }
                                   }

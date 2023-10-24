@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:handyman/TabComponent/homepage.dart';
+import 'package:handyman/View/Auth/User/Handyman/createaccount.dart';
 import 'package:handyman/View/Auth/User/login.dart';
 import 'package:handyman/View/style.dart';
 
@@ -64,15 +66,17 @@ class _OnboardScreenState extends State<OnboardScreen> with Ui {
                                                   radioData[index]['text'],
                                                   w700)),
                                         ),
-                                        Radio<String>(
-                                            activeColor: green,
-                                            value: radioData[index]['text'],
-                                            groupValue: radioKey,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                radioKey = val!;
-                                              });
-                                            })
+                                        Flexible(
+                                          child: Radio<String>(
+                                              activeColor: green,
+                                              value: radioData[index]['text'],
+                                              groupValue: radioKey,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  radioKey = val!;
+                                                });
+                                              }),
+                                        )
                                       ]),
                                 ),
                               ),
@@ -89,15 +93,20 @@ class _OnboardScreenState extends State<OnboardScreen> with Ui {
               children: [
                 GestureDetector(
                     onTap: () {
-                      nav(context, const LoginScreen());
+                      nav(context, const CreateAccountHandyman());
                     },
                     child: button(commonText('Next', white), green)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    input(black30, 16, 'Already have an account? ', w400),
-                    input(green, 16, 'Log in', w400),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    nav(context, const LoginScreen());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      input(black30, 16, 'Already have an account? ', w400),
+                      input(green, 16, 'Log in', w400),
+                    ],
+                  ),
                 ),
               ],
             ),

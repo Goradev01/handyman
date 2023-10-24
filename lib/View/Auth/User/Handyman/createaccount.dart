@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:handyman/Provider/authprovider.dart';
+import 'package:handyman/View/Auth/User/Handyman/signup1.dart';
 import 'package:handyman/View/Auth/User/otp.dart';
 import 'package:handyman/View/Auth/User/otptoken.dart';
-import 'package:handyman/View/Auth/User/signup.dart';
 import 'package:handyman/View/style.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class CreateAccountHandyman extends StatefulWidget {
+  const CreateAccountHandyman({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<CreateAccountHandyman> createState() => _CreateAccountHandymanState();
 }
 
 PageController pagecontrl = PageController();
 
-class _RegisterScreenState extends State<RegisterScreen> with Ui {
+class _CreateAccountHandymanState extends State<CreateAccountHandyman> with Ui {
   int process = 0;
   PageController pagecontrl = PageController();
   @override
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Ui {
                 ),
               ),
               ref.watch(authRepo).isSignup == 0
-                  ? const SignupScreen()
+                  ? const SignupScreen1()
                   : ref.watch(authRepo).isSignup == 1
                       ? const OTPSCreen()
                       : const OTPToken(),
