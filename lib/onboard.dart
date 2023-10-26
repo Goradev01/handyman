@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:handyman/TabComponent/homepage.dart';
 import 'package:handyman/View/Auth/User/Handyman/createaccount.dart';
 import 'package:handyman/View/Auth/User/login.dart';
 import 'package:handyman/View/style.dart';
@@ -23,9 +22,13 @@ class _OnboardScreenState extends State<OnboardScreen> with Ui {
     return Scaffold(
         body: SafeArea(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: height(context) - 150,
+            height: height(context) - 750,
+          ),
+          SizedBox(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
