@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:handyman/Provider/authprovider.dart';
-import 'package:handyman/View/Auth/User/Handyman/signup1.dart';
+import 'package:handyman/View/Auth/Handyman/signup1.dart';
 import 'package:handyman/View/Auth/User/otp.dart';
 import 'package:handyman/View/Auth/User/otptoken.dart';
 import 'package:handyman/View/style.dart';

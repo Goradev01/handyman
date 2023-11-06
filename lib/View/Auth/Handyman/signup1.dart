@@ -60,7 +60,6 @@ class _SignupScreen1State extends State<SignupScreen1> with Ui {
             ),
             fullName!.textField(),
             phoneNo!.textField(),
-
             email!.textField(),
             service!.textField(),
             // Padding(

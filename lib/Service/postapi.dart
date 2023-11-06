@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:handyman/Service/baseurl.dart';
 import 'package:http/http.dart' as https;
 
@@ -25,7 +26,9 @@ class PostApi {
             "Content-Type": "multipart/form-data",
           },
           body: const JsonEncoder().convert(body));
-      print('${BaseUrl().base}$url');
+      if (kDebugMode) {
+        print('${BaseUrl().base}$url');
+      }
       log('ggg:${response.body}');
 
       return Right(response);
@@ -36,7 +39,7 @@ class PostApi {
 
   Future<Either<Exception, https.StreamedResponse>> loginApi(
       String email, String password, String username) async {
-    var url = Uri.parse('https://handyman-amber.vercel.app/users/login/');
+    var url = Uri.parse('${BaseUrl().base}/users/login/');
 
     // Create a new multipart request
     var request = https.MultipartRequest('POST', url);
@@ -56,7 +59,7 @@ class PostApi {
   }
 
   Future<void> sendFormData(String email, String password) async {
-    var url = Uri.parse('https://handyman-amber.vercel.app/users/login/');
+    var url = Uri.parse('/users/login/');
 
     // Create a new multipart request
     var request = https.MultipartRequest('POST', url);

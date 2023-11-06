@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:handyman/Provider/authprovider.dart';
 import 'package:handyman/TabComponent/homepage.dart';
 import 'package:handyman/View/Auth/User/register.dart';
 import 'package:handyman/View/formwidget.dart';
 import 'package:handyman/View/style.dart';
-import 'package:jwt_decode/jwt_decode.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

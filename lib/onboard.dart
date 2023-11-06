@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:handyman/View/Auth/User/Handyman/createaccount.dart';
+import 'package:handyman/View/Auth/Handyman/createaccount.dart';
 import 'package:handyman/View/Auth/User/login.dart';
 import 'package:handyman/View/style.dart';
 

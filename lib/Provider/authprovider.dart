@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:handyman/Service/postapi.dart';
@@ -26,8 +27,10 @@ class AuthProvider extends StateNotifier with Ui {
       await value.fold((l) {
         // updateLoadLogin(false);
       }, (r) async {
-        print(r.body);
-        print(r.statusCode);
+        if (kDebugMode) {
+          print(r.body);
+          print(r.statusCode);
+        }
         // print(r.body);
         if (r.statusCode == 201 || r.statusCode == 200) {
           accessToken = jsonDecode(r.body)['access'];
